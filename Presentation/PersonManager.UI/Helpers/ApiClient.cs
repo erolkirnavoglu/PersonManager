@@ -19,6 +19,7 @@ namespace PersonManager.UI.Helpers
                 return JsonConvert.DeserializeObject<T>(content);
             }
             return default;
+
         }
         public async Task<bool> PostAsync<T>(string url, T data)
         {

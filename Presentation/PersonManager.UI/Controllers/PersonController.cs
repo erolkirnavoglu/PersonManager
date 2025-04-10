@@ -54,5 +54,26 @@ namespace PersonManager.UI.Controllers
             bool isSuccess = await _apiClient.DeleteAsync(url);
             return Ok(isSuccess);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetInfo(Guid id)
+        {
+            var url = $"{ApiRoot.ByIdPerson}/{id}";
+            var persons = await _apiClient.GetAsync<PersonModel>(url);
+            return PartialView(persons);
+        }
+
+        [HttpPut("edit")]
+        public async Task<IActionResult> Edit([FromBody] PersonPost model)
+        {
+            bool isSuccess = await _apiClient.PutAsync(ApiRoot.EditPerson, model);
+            if (!isSuccess)
+            {
+                ModelState.AddModelError(string.Empty, "Veri eklenirken bir hata oluştu.");
+                return View(model);
+
+            }
+            return View(model);
+        }
     }
 }
