@@ -6,10 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="src\Mappings\" />
-    <Folder Include="src\Registration\" />
-    <Folder Include="src\Person\" />
-  </ItemGroup>
-
 </Project>
