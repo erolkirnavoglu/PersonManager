@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="src\Mappings\" />
-    <Folder Include="src\Registration\" />
-    <Folder Include="src\Person\" />
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\PersonManager.Domain\PersonManager.Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\PersonManager.Persistence\PersonManager.Persistence.csproj" />
+    <ProjectReference Include="..\PersonManager.Application.Abstractions\PersonManager.Application.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
