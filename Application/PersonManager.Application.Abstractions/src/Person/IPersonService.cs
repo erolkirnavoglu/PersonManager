@@ -7,5 +7,7 @@ namespace PersonManager.Application.Abstractions.Person
         Task<List<PersonDto>> GetListAsync();
 
         Task<PersonDto> CreateAsync(PersonRequestDto model);
+
+        Task<bool> DeleteAsync(Guid id);
     }
 }
