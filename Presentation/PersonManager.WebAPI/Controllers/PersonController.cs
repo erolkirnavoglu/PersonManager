@@ -31,5 +31,12 @@ namespace PersonManager.WebAPI.Controllers
             var result = await _personService.CreateAsync(model);
             return Ok(result);
         }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _personService.DeleteAsync(id);
+            return Ok(result);
+        }
     }
 }
