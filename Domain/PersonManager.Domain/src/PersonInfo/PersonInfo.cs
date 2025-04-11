@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PersonManager.Domain
 {
-    public class PersonInfo:IEntity
+    public class PersonInfo : IEntity
     {
         public Guid Id { get; set; }
 
@@ -13,6 +13,8 @@ namespace PersonManager.Domain
         public ContactType ContactType { get; set; }
 
         public string Content { get; set; }
+
+        public DateTime CreatedDate { get; set; }
 
         [ForeignKey("PersonId")]
         public virtual Person Person { get; set; }

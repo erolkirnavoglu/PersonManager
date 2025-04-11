@@ -12,13 +12,20 @@ var Person = function () {
                 { data: "surname" },
                 { data: "company" },
                 {
+                    data: "createdDate",
+                    render: function (data) {
+                        if (!data) return "";
+                        return new Date(data).toLocaleDateString("tr-TR");
+                    }
+                },
+                {
                     data: null,
                     orderable: false,
                     searchable: false,
                     className: "text-center",
                     render: function (data, type, row) {
                         return `
-                    <button class="btn btn-sm btn-primary me-1" onclick="personEdit('${row.id}')">
+                    <button class="btn btn-sm btn-primary me-1" onclick="Person.PersonView('${row.id}')">
                         <i class="fa fa-edit"></i>
                     </button>
                     <button class="btn btn-sm btn-danger" onclick="Person.PersonDelete('${row.id}')">
@@ -28,6 +35,18 @@ var Person = function () {
                     }
                 }
             ]
+        });
+    }
+    var personView = (id) => {
+        AjaxHelper.Request({
+            url: `/persons/${id}`,
+            type: "GET",
+        }).done(function (response) {
+            $("#commonModal").empty();
+            $("#commonModal").html(response);
+            $("#personEditModal").modal("show");
+        }).fail(function (xhr, status, error) {
+            console.error("Hata:", error);
         });
     }
     var personDelete = (id) => {
@@ -67,7 +86,8 @@ var Person = function () {
 
         },
         PersonAdd: personAdd,
-        PersonDelete: personDelete
+        PersonDelete: personDelete,
+        PersonView: personView
     }
 }();
 

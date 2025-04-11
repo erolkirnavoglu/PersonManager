@@ -1,9 +1,8 @@
-﻿namespace PersonManager.Application.Abstractions.Person.Contracts
+﻿namespace PersonManager.UI.Models
 {
-    public class PersonDto
+    public class PersonModel
     {
         public Guid Id { get; set; }
-
         public string Name { get; set; }
 
         public string Surname { get; set; }

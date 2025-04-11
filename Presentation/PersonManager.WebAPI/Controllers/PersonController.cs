@@ -38,5 +38,19 @@ namespace PersonManager.WebAPI.Controllers
             var result = await _personService.DeleteAsync(id);
             return Ok(result);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetInfo(Guid id)
+        {
+            var persons = await _personService.GetByIdAsync(id);
+            return Ok(persons);
+        }
+
+        [HttpPut("edit")]
+        public async Task<IActionResult> Edit([FromBody] PersonRequestDto model)
+        {
+            var result = await _personService.EditAsync(model);
+            return Ok(result);
+        }
     }
 }

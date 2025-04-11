@@ -8,5 +8,7 @@
         public string Surname { get; set; }
 
         public string Company { get; set; }
+
+        public DateTime CreatedDate { get; set; }
     }
 }

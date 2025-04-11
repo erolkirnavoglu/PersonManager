@@ -12,6 +12,9 @@ namespace PersonManager.Domain
 
         public string Company { get; set; }
 
+        public DateTime CreatedDate { get; set; }
+
         public virtual ICollection<PersonInfo> PersonInfos { get; set; }
+        
     }
 }
