@@ -1,5 +1,4 @@
-﻿
-var DataTableHelper = (function () {
+﻿var DataTableHelper = (function () {
 
     function Init({ url, tableId, columns, method = "GET", data = null }) {
         if (!url || !tableId || !columns) {
