@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PersonManager.Application.Abstractions.ReportDetail;
 using PersonManager.Application.Abstractions.ReportDetail.Contracts;
 using PersonManager.Common.Enums;
+using PersonManager.Domain;
 using PersonManager.Persistence.Context;
 
 namespace PersonManager.Application.ReportDetail
@@ -47,6 +48,13 @@ namespace PersonManager.Application.ReportDetail
             _context.ReportDetails.AddRange(reportList);
             await _context.SaveChangesAsync();
 
+        }
+
+        public async Task<List<ReportDetailDto>> GetByReportDetailListAsync(Guid reportId)
+        {
+            var details = await _context.ReportDetails.Where(p => p.ReportId == reportId).ToListAsync().ConfigureAwait(false);
+            var detailList = _mapper.Map<List<ReportDetailDto>>(details);
+            return detailList;
         }
     }
 }

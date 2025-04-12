@@ -26,7 +26,7 @@ var Person = function () {
                     data: "createdDate",
                     render: function (data) {
                         if (!data) return "";
-                        return new Date(data).toLocaleDateString("tr-TR");
+                        return new Date(data).toLocaleString("tr-TR");
                     }
                 },
                 {
@@ -71,7 +71,7 @@ var Person = function () {
                                             <td>${info.id}</td>
                                             <td>${info.contactType}</td>
                                             <td>${info.content}</td>
-                                            <td>${new Date(info.createdDate).toLocaleDateString("tr-TR")}</td>
+                                            <td>${new Date(info.createdDate).toLocaleString("tr-TR")}</td>
                                             <th>
                                                 <button class="btn btn-sm btn-danger" onclick="Person.PersonInfoDelete('${info.id}')">
                                                     <i class="fa fa-trash"></i>

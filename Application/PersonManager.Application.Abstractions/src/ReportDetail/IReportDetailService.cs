@@ -5,6 +5,8 @@ namespace PersonManager.Application.Abstractions.ReportDetail
 {
     public interface IReportDetailService
     {
+        Task<List<ReportDetailDto>> GetByReportDetailListAsync(Guid reportId);
+
         Task CreateAsync(Guid reportId);
     }
 }
