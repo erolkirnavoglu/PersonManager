@@ -1,0 +1,42 @@
+﻿@using PersonManager.Common.Enums
+
+
+<div class="modal fade" id="personInfoAddModal" tabindex="-1" aria-labelledby="personModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="personModalLabel">Person Info Add</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" value="@ViewBag.PersonId" name="personId" />
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Info Type </label>
+                        @Html.DropDownList("contactType",
+                                 Enum.GetValues(typeof(ContactType))
+                                 .Cast<ContactType>()
+                                 .Select(e => new SelectListItem
+                        {
+                            Text = e.ToString(),
+                            Value = ((int)e).ToString()
+                        }),
+                                 "Seçiniz",
+                                 new { @class = "form-control" })
+                    </div>
+                    <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">Info Content </label>
+                        <input type="text" class="form-control" name="content">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" onclick="PersonInfoCreate.InfoAdd()" class="btn btn-primary">Info Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+

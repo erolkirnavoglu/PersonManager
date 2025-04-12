@@ -1,5 +1,6 @@
 using PersonManager.Persistence.Registration;
 using PersonManager.Application;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,11 @@ builder.Services.AddSwaggerGen();
 //After Add
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceInfrastructure(builder.Configuration);
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 var app = builder.Build();
 
