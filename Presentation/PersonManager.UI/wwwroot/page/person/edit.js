@@ -14,8 +14,11 @@
             type: "PUT",
             data: formData,
         }).done(function (response) {
-            $('#personEditModal').modal('hide');
-            DataTableHelper.RefresTable('personTable');
+            if (response) {
+                $('#personEditModal').modal('hide');
+                DataTableHelper.RefresTable('personTable');
+            }
+           
         }).fail(function (xhr, status, error) {
             console.error("Hata:", error);
         });

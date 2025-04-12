@@ -44,7 +44,7 @@ namespace PersonManager.UI.Controllers
                 return View(model);
                 
             }
-            return View(model);
+            return Ok(isSuccess);
         }
 
         [HttpDelete("delete/{id}")]
@@ -73,7 +73,7 @@ namespace PersonManager.UI.Controllers
                 return View(model);
 
             }
-            return View(model);
+            return Ok(isSuccess);
         }
     }
 }
