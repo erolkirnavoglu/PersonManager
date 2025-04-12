@@ -29,6 +29,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQ", "RabbitMQ", "{4F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.RabbitMQ", "RabbitMQ\PersonManager.RabbitMQ\PersonManager.RabbitMQ.csproj", "{C732C399-D8F8-49C9-B5C3-E7458E855E25}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTest", "UnitTest", "{4F0D2BC0-3B45-45C7-8281-7561D43DD293}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.XUnit", "UnitTest\PersonManager.XUnit\PersonManager.XUnit.csproj", "{EC1CB8CE-595E-494C-A7CC-AA13AB94142E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +71,10 @@ Global
 		{C732C399-D8F8-49C9-B5C3-E7458E855E25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C732C399-D8F8-49C9-B5C3-E7458E855E25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C732C399-D8F8-49C9-B5C3-E7458E855E25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC1CB8CE-595E-494C-A7CC-AA13AB94142E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC1CB8CE-595E-494C-A7CC-AA13AB94142E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC1CB8CE-595E-494C-A7CC-AA13AB94142E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC1CB8CE-595E-494C-A7CC-AA13AB94142E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +88,7 @@ Global
 		{CB33D703-FBCD-4DC1-8033-4FBFF68EA0BB} = {AE15F930-C402-44B6-A63D-C30E8C727E70}
 		{1F581C1D-584F-4CC3-88F1-A3E82BF7F6B8} = {F62ADC79-0AAE-4BF3-9531-1D05804F30B6}
 		{C732C399-D8F8-49C9-B5C3-E7458E855E25} = {4FCFAF54-A18E-40B7-BE4E-1A98040A565E}
+		{EC1CB8CE-595E-494C-A7CC-AA13AB94142E} = {4F0D2BC0-3B45-45C7-8281-7561D43DD293}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10B54F4B-FF84-4687-92EE-5DB23C4017B6}

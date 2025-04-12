@@ -27,7 +27,40 @@ var Report = function () {
                         return new Date(data).toLocaleString("tr-TR");
                     }
                 },
-            ]
+            ],
+            detailConfig: {
+                tableId: "reportTable",
+                columnCount: 7,
+                detailUrlCallback: (reportId) => `/report-details/detail/${reportId}`,
+                templateCallback: (data) => {
+                    return `
+                        <table class="table table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Location</th>
+                                    <th>Person Count</th>
+                                    <th>Phone Number Count</th>
+                                    <th>Created Date</th>
+                                     
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${data.details.map(info => `
+                                        <tr>
+                                            <td>${info.id}</td>
+                                            <td>${info.location}</td>
+                                            <td>${info.personCount}</td>
+                                             <td>${info.phoneNumberCount}</td>
+                                            <td>${new Date(info.createdDate).toLocaleString("tr-TR")}</td>
+                                        </tr>
+                                    `).join("")
+                        }
+                            </tbody>
+                        </table>
+                        `;
+                }
+            }
         });
 
     }
@@ -37,7 +70,6 @@ var Report = function () {
             type: "POST",
             data: {}
         }).done(function (response) {
-            debugger;
             if (response) {
                 DataTableHelper.RefresTable('reportTable');
             }
