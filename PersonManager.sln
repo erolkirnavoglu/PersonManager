@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{F62ADC79-0AAE-4BF3-9531-1D05804F30B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.Application", "Application\PersonManager.Application\PersonManager.Application.csproj", "{5E4E8171-3C87-4F03-A1AB-5363CCCC05FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonManager.Application", "Application\PersonManager.Application\PersonManager.Application.csproj", "{5E4E8171-3C87-4F03-A1AB-5363CCCC05FE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{4634E9BB-12CF-42C1-999A-A34F6EA3B1AF}"
 EndProject
@@ -13,17 +13,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{AE15F930-C402-44B6-A63D-C30E8C727E70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.Domain", "Domain\PersonManager.Domain\PersonManager.Domain.csproj", "{0CEA8C61-2528-42BF-A783-B4D00884497B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonManager.Domain", "Domain\PersonManager.Domain\PersonManager.Domain.csproj", "{0CEA8C61-2528-42BF-A783-B4D00884497B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.Common", "Infrastructure\PersonManager.Common\PersonManager.Common.csproj", "{B803402D-46C9-44D8-AC6E-BFE02E4C159E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonManager.Common", "Infrastructure\PersonManager.Common\PersonManager.Common.csproj", "{B803402D-46C9-44D8-AC6E-BFE02E4C159E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.Persistence", "Infrastructure\PersonManager.Persistence\PersonManager.Persistence.csproj", "{F79E0669-D6B3-4D8C-A368-4172A33F99F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonManager.Persistence", "Infrastructure\PersonManager.Persistence\PersonManager.Persistence.csproj", "{F79E0669-D6B3-4D8C-A368-4172A33F99F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.UI", "Presentation\PersonManager.UI\PersonManager.UI.csproj", "{4863C168-456D-44DA-AF34-C0D274C256F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonManager.UI", "Presentation\PersonManager.UI\PersonManager.UI.csproj", "{4863C168-456D-44DA-AF34-C0D274C256F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.WebAPI", "Presentation\PersonManager.WebAPI\PersonManager.WebAPI.csproj", "{CB33D703-FBCD-4DC1-8033-4FBFF68EA0BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonManager.WebAPI", "Presentation\PersonManager.WebAPI\PersonManager.WebAPI.csproj", "{CB33D703-FBCD-4DC1-8033-4FBFF68EA0BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.Application.Abstractions", "Application\PersonManager.Application.Abstractions\PersonManager.Application.Abstractions.csproj", "{1F581C1D-584F-4CC3-88F1-A3E82BF7F6B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PersonManager.Application.Abstractions", "Application\PersonManager.Application.Abstractions\PersonManager.Application.Abstractions.csproj", "{1F581C1D-584F-4CC3-88F1-A3E82BF7F6B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQ", "RabbitMQ", "{4FCFAF54-A18E-40B7-BE4E-1A98040A565E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonManager.RabbitMQ", "RabbitMQ\PersonManager.RabbitMQ\PersonManager.RabbitMQ.csproj", "{C732C399-D8F8-49C9-B5C3-E7458E855E25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,10 @@ Global
 		{1F581C1D-584F-4CC3-88F1-A3E82BF7F6B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F581C1D-584F-4CC3-88F1-A3E82BF7F6B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F581C1D-584F-4CC3-88F1-A3E82BF7F6B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C732C399-D8F8-49C9-B5C3-E7458E855E25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C732C399-D8F8-49C9-B5C3-E7458E855E25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C732C399-D8F8-49C9-B5C3-E7458E855E25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C732C399-D8F8-49C9-B5C3-E7458E855E25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +79,7 @@ Global
 		{4863C168-456D-44DA-AF34-C0D274C256F2} = {AE15F930-C402-44B6-A63D-C30E8C727E70}
 		{CB33D703-FBCD-4DC1-8033-4FBFF68EA0BB} = {AE15F930-C402-44B6-A63D-C30E8C727E70}
 		{1F581C1D-584F-4CC3-88F1-A3E82BF7F6B8} = {F62ADC79-0AAE-4BF3-9531-1D05804F30B6}
+		{C732C399-D8F8-49C9-B5C3-E7458E855E25} = {4FCFAF54-A18E-40B7-BE4E-1A98040A565E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10B54F4B-FF84-4687-92EE-5DB23C4017B6}

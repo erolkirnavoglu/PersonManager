@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\PersonManager.Domain\PersonManager.Domain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\PersonManager.Persistence\PersonManager.Persistence.csproj" />
+    <ProjectReference Include="..\..\RabbitMQ\PersonManager.RabbitMQ\PersonManager.RabbitMQ.csproj" />
     <ProjectReference Include="..\PersonManager.Application.Abstractions\PersonManager.Application.Abstractions.csproj" />
   </ItemGroup>
 

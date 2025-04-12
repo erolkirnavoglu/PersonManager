@@ -2,6 +2,7 @@
 using PersonManager.Application.Abstractions.Person.Contracts;
 using PersonManager.Application.Abstractions.PersonInfo.Contracts;
 using PersonManager.Application.Abstractions.Report.Contracts;
+using PersonManager.Application.Abstractions.ReportDetail.Contracts;
 
 
 namespace PersonManager.Application.Mappings
@@ -16,6 +17,7 @@ namespace PersonManager.Application.Mappings
             CreateMap<PersonInfoRequestDto, Domain.PersonInfo>();
             CreateMap<Domain.Report, ReportDto>();
             CreateMap<ReportRequestDto, Domain.Report>();
+            CreateMap<Domain.ReportDetail, ReportDetailDto>().ReverseMap();
         }
     }
 }
