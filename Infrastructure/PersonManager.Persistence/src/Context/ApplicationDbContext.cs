@@ -3,7 +3,7 @@ using PersonManager.Domain;
 
 namespace PersonManager.Persistence.Context
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -12,5 +12,7 @@ namespace PersonManager.Persistence.Context
 
         public DbSet<Person> Persons { get; set; }
         public DbSet<PersonInfo> PersonInfos { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<ReportDetail> ReportDetails { get; set; }
     }
 }

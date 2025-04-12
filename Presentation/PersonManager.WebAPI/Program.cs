@@ -1,5 +1,6 @@
 using PersonManager.Persistence.Registration;
 using PersonManager.Application;
+using PersonManager.RabbitMQ.Registration;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddSwaggerGen();
 //After Add
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceInfrastructure(builder.Configuration);
+builder.Services.AddRabbitMqServices();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
