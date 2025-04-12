@@ -37,10 +37,20 @@ namespace PersonManager.UI.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] PersonPost model)
         {
+            if (model is null)
+            {
+                ModelState.AddModelError(string.Empty, "Form Empty.");
+                return Ok(false);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return Ok(false);
+            }
             bool isSuccess = await _apiClient.PostAsync(ApiRoot.PostPerson, model);
             if (!isSuccess)
             {
-                ModelState.AddModelError(string.Empty, "Veri eklenirken bir hata oluştu.");
+                ModelState.AddModelError(string.Empty, "An error occurred while adding data.");
                 return View(model);
                 
             }
@@ -69,7 +79,7 @@ namespace PersonManager.UI.Controllers
             bool isSuccess = await _apiClient.PutAsync(ApiRoot.EditPerson, model);
             if (!isSuccess)
             {
-                ModelState.AddModelError(string.Empty, "Veri eklenirken bir hata oluştu.");
+                ModelState.AddModelError(string.Empty, "An error occurred while adding data.");
                 return View(model);
 
             }

@@ -36,13 +36,13 @@ var Person = function () {
                     className: "text-center",
                     render: function (data, type, row) {
                         return `
-                    <button class="btn btn-sm btn-primary me-1" onclick="Person.PersonView('${row.id}')">
+                    <button class="btn btn-sm btn-primary me-1" onclick="Person.PersonView('${row.id}')" data-bs-toggle="tooltip" title="Person View">
                         <i class="fa fa-edit"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" onclick="Person.PersonDelete('${row.id}')">
+                    <button class="btn btn-sm btn-danger" onclick="Person.PersonDelete('${row.id}')" data-bs-toggle="tooltip" title="Person Remove">
                         <i class="fa fa-trash"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" onclick="Person.PersonInfoAdd('${row.id}')">
+                    <button class="btn btn-sm btn-warning" onclick="Person.PersonInfoAdd('${row.id}')" data-bs-toggle="tooltip" title="Person Info Add">
                          <i class="fa fa-user me-1"></i>
                     </button>
                 `;
@@ -118,6 +118,23 @@ var Person = function () {
             });
         }
     }
+    var personInfoDelete = (id) => {
+        if (confirm("Are you sure you want to Delete Person Info?")) {
+            AjaxHelper.Request({
+                url: `/person-infos/delete/${id}`,
+                type: "DELETE"
+            }).done(function (response) {
+                if (response) {
+                    DataTableHelper.RefresTable('personTable');
+                } else {
+                    alert("There was a problem while deleting");
+                }
+
+            }).fail(function (xhr, status, error) {
+                console.error("Silme hatası:", error);
+            });
+        }
+    }
     var personAdd = (id) => {
         AjaxHelper.Request({
             url: "/persons/create",
@@ -155,7 +172,8 @@ var Person = function () {
         PersonAdd: personAdd,
         PersonDelete: personDelete,
         PersonView: personView,
-        PersonInfoAdd: personInfoAdd
+        PersonInfoAdd: personInfoAdd,
+        PersonInfoDelete: personInfoDelete
     }
 }();
 

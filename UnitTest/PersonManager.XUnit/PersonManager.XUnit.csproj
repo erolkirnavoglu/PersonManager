@@ -19,11 +19,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Xunit" />
+    <ProjectReference Include="..\..\Application\PersonManager.Application\PersonManager.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\PersonManager.Persistence\PersonManager.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="src\" />
+    <Using Include="Xunit" />
   </ItemGroup>
 
 </Project>

@@ -31,14 +31,33 @@ namespace PersonManager.UI.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] PersonInfoPost model)
         {
+            if (model is null)
+            {
+                ModelState.AddModelError(string.Empty, "Form Empty.");
+                return Ok(false);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return Ok(false);
+            }
+
             bool isSuccess = await _apiClient.PostAsync(ApiRoot.PostPersonInfo, model);
             if (!isSuccess)
             {
-                ModelState.AddModelError(string.Empty, "Veri eklenirken bir hata oluştu.");
+                ModelState.AddModelError(string.Empty, "An error occurred while adding data.");
                 return View(model);
 
             }
-            return View(model);
+            return Ok(isSuccess);
+        }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var url = $"{ApiRoot.DeletePersonInfo}/{id}";
+            bool isSuccess = await _apiClient.DeleteAsync(url);
+            return Ok(isSuccess);
         }
 
     }
