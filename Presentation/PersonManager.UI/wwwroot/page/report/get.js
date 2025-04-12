@@ -24,7 +24,7 @@ var Report = function () {
                     data: "createdDate",
                     render: function (data) {
                         if (!data) return "";
-                        return new Date(data).toLocaleDateString("tr-TR");
+                        return new Date(data).toLocaleString("tr-TR");
                     }
                 },
             ]
@@ -34,8 +34,13 @@ var Report = function () {
     var reportAdd = (id) => {
         AjaxHelper.Request({
             url: "/reports/create",
-            type: "POST"
+            type: "POST",
+            data: {}
         }).done(function (response) {
+            debugger;
+            if (response) {
+                DataTableHelper.RefresTable('reportTable');
+            }
         }).fail(function (xhr, status, error) {
             console.error("Hata:", error);
         });

@@ -11,8 +11,11 @@
             type: "POST",
             data: fromData
         }).done(function (response) {
-            $('#personInfoAddModal').modal('hide');
-            DataTableHelper.RefresTable('personTable');
+            if (response) {
+                $('#personInfoAddModal').modal('hide');
+                DataTableHelper.RefresTable('personTable');
+            }
+           
         }).fail(function (xhr, status, error) {
             console.error("Hata:", error);
         });

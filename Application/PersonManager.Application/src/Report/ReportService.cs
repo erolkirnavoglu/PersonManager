@@ -26,6 +26,7 @@ namespace PersonManager.Application.Report
         {
             var report = _mapper.Map<Domain.Report>(model);
             report.CreatedDate = DateTime.UtcNow;
+            report.ReportStatus = Common.Enums.ReportStatus.Preparing;
             _context.Reports.Add(report);
             await _context.SaveChangesAsync();
             return _mapper.Map<ReportDto>(report);
