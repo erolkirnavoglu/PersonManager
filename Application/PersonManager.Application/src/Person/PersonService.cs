@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using PersonManager.Application.Abstractions.Person;
 using PersonManager.Application.Abstractions.Person.Contracts;
-using PersonManager.Domain.Base;
 using PersonManager.Persistence.Context;
 
 namespace PersonManager.Application.Person
@@ -32,9 +31,10 @@ namespace PersonManager.Application.Person
         }
         public async Task<bool> DeleteAsync(Guid id)
         {
-            var person = await _context.Persons.FirstOrDefaultAsync(x => x.Id == id);
+            var person = await _context.Persons.Include(p=>p.PersonInfos).FirstOrDefaultAsync(x => x.Id == id);
             if (person is not null)
             {
+                _context.PersonInfos.RemoveRange(person.PersonInfos);
                 _context.Persons.Remove(person);
                 await _context.SaveChangesAsync();
                 return true;

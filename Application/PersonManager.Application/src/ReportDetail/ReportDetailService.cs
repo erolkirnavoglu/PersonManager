@@ -43,10 +43,17 @@ namespace PersonManager.Application.ReportDetail
             })
             .ToListAsync();
 
-            var reportList = _mapper.Map<List<Domain.ReportDetail>>(reports);
+            var report = await _context.Reports.Where(p => p.Id == reportId).FirstOrDefaultAsync().ConfigureAwait(false);
+            if (report is not null)
+            {
+                report.ReportStatus = ReportStatus.Completed;
+                var reportList = _mapper.Map<List<Domain.ReportDetail>>(reports);
 
-            _context.ReportDetails.AddRange(reportList);
-            await _context.SaveChangesAsync();
+                _context.ReportDetails.AddRange(reportList);
+                _context.Reports.Update(report);
+
+                await _context.SaveChangesAsync();
+            }
 
         }
 

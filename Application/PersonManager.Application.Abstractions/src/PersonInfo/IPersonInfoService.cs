@@ -8,5 +8,7 @@ namespace PersonManager.Application.Abstractions.PersonInfo
         Task<PersonInfoDto> CreateAsync(PersonInfoRequestDto model);
 
         Task<List<PersonInfoDto>> GetPersonIdInfoListAsync(Guid personId);
+
+        Task<bool> DeleteAsync(Guid id);
     }
 }
