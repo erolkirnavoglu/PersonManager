@@ -1,6 +1,6 @@
 ﻿var DataTableHelper = (function () {
 
-    function Init({ url, tableId, columns, method = "GET", data = null }) {
+    function Init({ url, tableId, columns, method = "GET", data = null, detailConfig = null }) {
         if (!url || !tableId || !columns) {
             return;
         }
@@ -19,7 +19,40 @@
                 },
                 dataSrc: "data"
             },
-            columns: columns
+            columns: columns,
+            createdRow: function (row, rowData, dataIndex) {
+            }
+        });
+
+        if (detailConfig) {
+            attachDetailToggle(detailConfig);
+        }
+    }
+
+    function attachDetailToggle({ tableId, detailUrlCallback, columnCount, templateCallback }) {
+        
+        $(`#${tableId}`).on('click', '.btn-detail', function () {
+            let row = $(this).closest('tr');
+            let id = $(this).data("id");
+
+            if (row.next('tr').hasClass('details-row')) {
+                row.next('tr').remove();
+                return;
+            }
+
+            $.ajax({
+                url: detailUrlCallback(id),
+                method: "GET",
+                success: function (data) {
+                    let detailsHtml = templateCallback(data);
+                    let detailsRow = `<tr class="details-row">
+                        <td colspan="${columnCount}">
+                            ${detailsHtml}
+                        </td>
+                    </tr>`;
+                    row.after(detailsRow);
+                }
+            });
         });
     }
 

@@ -8,5 +8,8 @@
         public const string DeletePerson = Root + "persons/delete";
         public const string ByIdPerson = Root + "persons";
         public const string EditPerson = Root + "persons/edit";
+
+        public const string PostPersonInfo = Root + "person-infos/create";
+        public const string GetPersonIdInfo = Root + "person-infos/personId";
     }
 }
