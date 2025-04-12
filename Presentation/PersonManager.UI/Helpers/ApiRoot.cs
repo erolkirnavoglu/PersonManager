@@ -11,5 +11,7 @@
 
         public const string PostPersonInfo = Root + "person-infos/create";
         public const string GetPersonIdInfo = Root + "person-infos/personId";
+
+        public const string GetReportList = Root + "reports/list";
     }
 }
