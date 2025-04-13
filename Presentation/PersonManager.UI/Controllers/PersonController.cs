@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using PersonManager.UI.Helpers;
 using PersonManager.UI.Models;
 using System.Reflection;
@@ -9,9 +10,11 @@ namespace PersonManager.UI.Controllers
     public class PersonController : Controller
     {
         private readonly ApiClient _apiClient;
-        public PersonController(ApiClient apiClient)
+        private readonly ApiRoot _api;
+        public PersonController(ApiClient apiClient, IOptions<ApiRoot> apiOptions)
         {
             _apiClient = apiClient;
+            _api = apiOptions.Value;
         }
 
         [HttpGet]
@@ -23,7 +26,7 @@ namespace PersonManager.UI.Controllers
         [HttpGet("list")]
         public async Task<IActionResult> GetList()
         {
-            var persons = await _apiClient.GetAsync<List<PersonResponse>>(ApiRoot.GetPersonList);
+            var persons = await _apiClient.GetAsync<List<PersonResponse>>(_api.GetPersonList);
             return Json(new { data = persons });
 
         }
@@ -47,7 +50,7 @@ namespace PersonManager.UI.Controllers
             {
                 return Ok(false);
             }
-            bool isSuccess = await _apiClient.PostAsync(ApiRoot.PostPerson, model);
+            bool isSuccess = await _apiClient.PostAsync(_api.PostPerson, model);
             if (!isSuccess)
             {
                 ModelState.AddModelError(string.Empty, "An error occurred while adding data.");
@@ -60,7 +63,7 @@ namespace PersonManager.UI.Controllers
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var url = $"{ApiRoot.DeletePerson}/{id}";
+            var url = $"{_api.DeletePerson}/{id}";
             bool isSuccess = await _apiClient.DeleteAsync(url);
             return Ok(isSuccess);
         }
@@ -68,7 +71,7 @@ namespace PersonManager.UI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetInfo(Guid id)
         {
-            var url = $"{ApiRoot.ByIdPerson}/{id}";
+            var url = $"{_api.ByIdPerson}/{id}";
             var persons = await _apiClient.GetAsync<PersonModel>(url);
             return PartialView(persons);
         }
@@ -76,7 +79,7 @@ namespace PersonManager.UI.Controllers
         [HttpPut("edit")]
         public async Task<IActionResult> Edit([FromBody] PersonPost model)
         {
-            bool isSuccess = await _apiClient.PutAsync(ApiRoot.EditPerson, model);
+            bool isSuccess = await _apiClient.PutAsync(_api.EditPerson, model);
             if (!isSuccess)
             {
                 ModelState.AddModelError(string.Empty, "An error occurred while adding data.");
