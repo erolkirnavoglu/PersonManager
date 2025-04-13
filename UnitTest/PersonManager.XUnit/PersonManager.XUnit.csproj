@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Application\PersonManager.Application\PersonManager.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\PersonManager.Persistence\PersonManager.Persistence.csproj" />
+    <ProjectReference Include="..\..\Presentation\PersonManager.WebAPI\PersonManager.WebAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

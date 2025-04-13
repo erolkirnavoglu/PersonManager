@@ -13,6 +13,7 @@ builder.Services.AddControllers()
     {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
+builder.Services.Configure<ApiRoot>(builder.Configuration.GetSection("Api"));
 
 var app = builder.Build();
 
@@ -33,6 +34,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Person}/{action=Get}/{id?}");
+    pattern: "persons/{action=Get}/{id?}");
 
 app.Run();

@@ -1,8 +1,25 @@
 ﻿namespace PersonManager.UI.Helpers
 {
-    public static class ApiRoot
+    public  class ApiRoot
     {
-        
+        public string Root { get; set; }
+        public string GetPersonList => $"{Root}persons/list";
+        public string PostPerson => $"{Root}persons/create";
+        public string DeletePerson => $"{Root}persons/delete";
+        public string ByIdPerson => $"{Root}persons";
+        public string EditPerson => $"{Root}persons/edit";
+
+        public string PostPersonInfo => $"{Root}person-infos/create";
+        public string GetPersonIdInfo => $"{Root}person-infos/personId";
+        public string DeletePersonInfo => $"{Root}person-infos/delete";
+
+        public string GetReportList => $"{Root}reports/list";
+        public string PostReport => $"{Root}reports/create";
+
+        public string GetDetailList => $"{Root}report-details/detail";
+
+
+        /*
         public const string Root = "https://localhost:7013/";
         // Person
         public const string GetPersonList = Root + "persons/list";
@@ -22,5 +39,6 @@
 
         // Report Detail
         public const string GetDetailList = Root + "report-details/detail";
+        */
     }
 }
