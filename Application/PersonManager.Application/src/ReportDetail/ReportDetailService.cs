@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PersonManager.Application.Abstractions.ReportDetail;
 using PersonManager.Application.Abstractions.ReportDetail.Contracts;
 using PersonManager.Common.Enums;
+using PersonManager.Domain;
 using PersonManager.Persistence.Context;
 
 namespace PersonManager.Application.ReportDetail
@@ -42,11 +43,25 @@ namespace PersonManager.Application.ReportDetail
             })
             .ToListAsync();
 
-            var reportList = _mapper.Map<List<Domain.ReportDetail>>(reports);
+            var report = await _context.Reports.Where(p => p.Id == reportId).FirstOrDefaultAsync().ConfigureAwait(false);
+            if (report is not null)
+            {
+                report.ReportStatus = ReportStatus.Completed;
+                var reportList = _mapper.Map<List<Domain.ReportDetail>>(reports);
 
-            _context.ReportDetails.AddRange(reportList);
-            await _context.SaveChangesAsync();
+                _context.ReportDetails.AddRange(reportList);
+                _context.Reports.Update(report);
 
+                await _context.SaveChangesAsync();
+            }
+
+        }
+
+        public async Task<List<ReportDetailDto>> GetByReportDetailListAsync(Guid reportId)
+        {
+            var details = await _context.ReportDetails.Where(p => p.ReportId == reportId).ToListAsync().ConfigureAwait(false);
+            var detailList = _mapper.Map<List<ReportDetailDto>>(details);
+            return detailList;
         }
     }
 }

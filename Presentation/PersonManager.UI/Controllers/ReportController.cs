@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using PersonManager.UI.Helpers;
 using PersonManager.UI.Models;
 
@@ -8,9 +9,11 @@ namespace PersonManager.UI.Controllers
     public class ReportController : Controller
     {
         private readonly ApiClient _apiClient;
-        public ReportController(ApiClient apiClient)
+        private readonly ApiRoot _api;
+        public ReportController(ApiClient apiClient, IOptions<ApiRoot> apiOptions)
         {
             _apiClient = apiClient;
+            _api = apiOptions.Value;
         }
 
         [HttpGet]
@@ -22,7 +25,7 @@ namespace PersonManager.UI.Controllers
         [HttpGet("list")]
         public async Task<IActionResult> GetList()
         {
-            var reports = await _apiClient.GetAsync<List<ReportResponse>>(ApiRoot.GetReportList);
+            var reports = await _apiClient.GetAsync<List<ReportResponse>>(_api.GetReportList);
             return Json(new { data = reports });
 
         }
@@ -30,7 +33,7 @@ namespace PersonManager.UI.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] ReportDto model)
         {
-            bool isSuccess = await _apiClient.PostAsync(ApiRoot.PostReport, model);
+            bool isSuccess = await _apiClient.PostAsync(_api.PostReport, model);
             if (!isSuccess)
             {
                 ModelState.AddModelError(string.Empty, "Veri eklenirken bir hata oluştu.");

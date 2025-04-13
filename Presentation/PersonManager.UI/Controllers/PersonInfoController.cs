@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using PersonManager.UI.Helpers;
 using PersonManager.UI.Models;
 
@@ -8,9 +9,11 @@ namespace PersonManager.UI.Controllers
     public class PersonInfoController : Controller
     {
         private readonly ApiClient _apiClient;
-        public PersonInfoController(ApiClient apiClient)
+        private readonly ApiRoot _api;
+        public PersonInfoController(ApiClient apiClient, IOptions<ApiRoot> apiOptions)
         {
             _apiClient = apiClient;
+            _api = apiOptions.Value;
         }
 
         [HttpGet("create")]
@@ -23,7 +26,7 @@ namespace PersonManager.UI.Controllers
         [HttpGet("personId/{personId}")]
         public async Task<IActionResult> GetPersonIdInfo(Guid personId)
         {
-            var url = $"{ApiRoot.GetPersonIdInfo}/{personId}";
+            var url = $"{_api.GetPersonIdInfo}/{personId}";
             var personInfos = await _apiClient.GetAsync<List<PersonInfoModel>>(url);
             return Json(new { personInfos });
         }
@@ -31,14 +34,33 @@ namespace PersonManager.UI.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] PersonInfoPost model)
         {
-            bool isSuccess = await _apiClient.PostAsync(ApiRoot.PostPersonInfo, model);
+            if (model is null)
+            {
+                ModelState.AddModelError(string.Empty, "Form Empty.");
+                return Ok(false);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return Ok(false);
+            }
+
+            bool isSuccess = await _apiClient.PostAsync(_api.PostPersonInfo, model);
             if (!isSuccess)
             {
-                ModelState.AddModelError(string.Empty, "Veri eklenirken bir hata oluştu.");
+                ModelState.AddModelError(string.Empty, "An error occurred while adding data.");
                 return View(model);
 
             }
-            return View(model);
+            return Ok(isSuccess);
+        }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var url = $"{_api.DeletePersonInfo}/{id}";
+            bool isSuccess = await _apiClient.DeleteAsync(url);
+            return Ok(isSuccess);
         }
 
     }

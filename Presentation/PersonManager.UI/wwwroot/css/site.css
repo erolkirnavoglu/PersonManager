@@ -20,3 +20,28 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.tooltip-custom .tooltip-inner {
+    background-color: #0d6efd; /* mavi */
+    color: white;
+    font-weight: bold;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: #0d6efd !important;
+}
+
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #0d6efd !important;
+}
+
+.tooltip.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: #0d6efd !important;
+}
+
+.tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #0d6efd !important;
+}

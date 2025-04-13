@@ -26,7 +26,7 @@ var Person = function () {
                     data: "createdDate",
                     render: function (data) {
                         if (!data) return "";
-                        return new Date(data).toLocaleDateString("tr-TR");
+                        return new Date(data).toLocaleString("tr-TR");
                     }
                 },
                 {
@@ -36,13 +36,13 @@ var Person = function () {
                     className: "text-center",
                     render: function (data, type, row) {
                         return `
-                    <button class="btn btn-sm btn-primary me-1" onclick="Person.PersonView('${row.id}')">
+                    <button class="btn btn-sm btn-primary me-1" onclick="Person.PersonView('${row.id}')" data-bs-toggle="tooltip" title="Person View">
                         <i class="fa fa-edit"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" onclick="Person.PersonDelete('${row.id}')">
+                    <button class="btn btn-sm btn-danger" onclick="Person.PersonDelete('${row.id}')" data-bs-toggle="tooltip" title="Person Remove">
                         <i class="fa fa-trash"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" onclick="Person.PersonInfoAdd('${row.id}')">
+                    <button class="btn btn-sm btn-warning" onclick="Person.PersonInfoAdd('${row.id}')" data-bs-toggle="tooltip" title="Person Info Add">
                          <i class="fa fa-user me-1"></i>
                     </button>
                 `;
@@ -71,7 +71,7 @@ var Person = function () {
                                             <td>${info.id}</td>
                                             <td>${info.contactType}</td>
                                             <td>${info.content}</td>
-                                            <td>${new Date(info.createdDate).toLocaleDateString("tr-TR")}</td>
+                                            <td>${new Date(info.createdDate).toLocaleString("tr-TR")}</td>
                                             <th>
                                                 <button class="btn btn-sm btn-danger" onclick="Person.PersonInfoDelete('${info.id}')">
                                                     <i class="fa fa-trash"></i>
@@ -105,6 +105,23 @@ var Person = function () {
         if (confirm("Are you sure you want to Delete Person?")) {
             AjaxHelper.Request({
                 url: `/persons/delete/${id}`,
+                type: "DELETE"
+            }).done(function (response) {
+                if (response) {
+                    DataTableHelper.RefresTable('personTable');
+                } else {
+                    alert("There was a problem while deleting");
+                }
+
+            }).fail(function (xhr, status, error) {
+                console.error("Silme hatası:", error);
+            });
+        }
+    }
+    var personInfoDelete = (id) => {
+        if (confirm("Are you sure you want to Delete Person Info?")) {
+            AjaxHelper.Request({
+                url: `/person-infos/delete/${id}`,
                 type: "DELETE"
             }).done(function (response) {
                 if (response) {
@@ -155,7 +172,8 @@ var Person = function () {
         PersonAdd: personAdd,
         PersonDelete: personDelete,
         PersonView: personView,
-        PersonInfoAdd: personInfoAdd
+        PersonInfoAdd: personInfoAdd,
+        PersonInfoDelete: personInfoDelete
     }
 }();
 
